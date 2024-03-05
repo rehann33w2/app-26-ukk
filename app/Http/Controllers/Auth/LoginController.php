@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Http\Controllers\Auth\flash;
 
 class LoginController extends Controller
 {
@@ -42,14 +43,14 @@ class LoginController extends Controller
     public function authenticated(Request $request, $user)
     {
         if ($user->akses == 'operator') {
-            return redirect()->route('admin');
+            return redirect()->route('operator.beranda');
         } elseif ($user->akses == 'admin') {
             return redirect()->route('admin.beranda');
         } elseif ($user->akses == 'peminjam') {
             return redirect()->route('peminjam.beranda');
         } else {
             Auth::logout();
-            flash('Anda tidak memiliki hak akses')->error();
+            // ('Anda tidak memiliki hak akses')->error();
             return redirect()->route('login');
         }
     }
