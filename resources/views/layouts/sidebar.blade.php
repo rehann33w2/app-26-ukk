@@ -43,49 +43,33 @@
         <div class="sidebar-menu">
             <ul class="menu">
                 <li class="sidebar-title">Menu</li>
-
                 <li class="sidebar-item active ">
                     <a href="index.html" class='sidebar-link'>
                         <i class="bi bi-grid-fill"></i>
                         <span>Dashboard</span>
                     </a>
-
-
                 </li>
-
 
                 <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-grid-1x2-fill"></i>
                         <span>Perpustakaan</span>
                     </a>
-
                     <ul class="submenu ">
-
                         <li class="submenu-item  ">
-                            <a href="{{ route('buku.table') }}" class="submenu-link">Buku</a>
-
+                            <a href="{{ route('user.index') }}" class="submenu-link">user</a>
                         </li>
-
-
-
-                        <li class="submenu-item  ">
-                            <a href="layout-vertical-navbar.html" class="submenu-link">Kategori buku</a>
-
-                        </li>
-
-                        <li class="submenu-item  ">
-                            <a href="layout-rtl.html" class="submenu-link">Peminjaman</a>
-
+                        {{-- <li class="submenu-item  ">
+                            <a href="{{ route('buku.index') }}" class="submenu-link">Buku</a>
                         </li>
                         <li class="submenu-item  ">
-                            <a href="{{ route('logout') }}" class="submenu-link">Logout</a>
-
+                            <a href="{{ route('kategori.index') }}" class="submenu-link">kategori</a>
                         </li>
+                        <li class="submenu-item  ">
+                            <a href="{{ route('pinjam.index') }}" class="submenu-link">pinjam</a>
+                        </li> --}}
                     </ul>
                 </li>
-
-
             </ul>
         </div>
     </div>
