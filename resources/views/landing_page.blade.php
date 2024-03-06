@@ -156,41 +156,18 @@
                 </div>
 
                 <div class="row gy-4" data-aos="fade-up" data-aos-delay="100">
-
+                    @foreach ($buku as $item)
                     <div class="col-lg-4 col-md-6">
                         <div class="service-item  position-relative">
                             <div class="gambar">
                                 <img src="{{ asset('gambar/novels.jpg') }}" style="width: 300px;" alt="novel">
                             </div>
-                            <h3>Novel</h3>
-                            <a href="#" class="readmore stretched-link">Read more <i
+                            <h3>{{ $item->judul }}</h3>
+                            <a href="{{ route('buku.index') }}" class="readmore stretched-link">Read more<i
                                     class="bi bi-arrow-right"></i></a>
                         </div>
                     </div><!-- End Service Item -->
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="service-item position-relative">
-                            <div class="gambar">
-                                <img src="{{ asset('gambar/kartun.jpg') }}" style="width: 300px;" alt="kartun">
-                            </div>
-                            <h3>Komix</h3>
-                            <a href="#" class="readmore stretched-link">Read more <i
-                                    class="bi bi-arrow-right"></i></a>
-                        </div>
-                    </div><!-- End Service Item -->
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="service-item position-relative">
-                            <div class="gambar">
-                                <img src="{{ asset('gambar/komix.png') }}" style="width: 300px;" alt="komix">
-                            </div>
-                            <h3>Kartun</h3>
-                            <a href="#" class="readmore stretched-link">Read more <i
-                                    class="bi bi-arrow-right"></i></a>
-                        </div>
-                    </div><!-- End Service Item -->
-                </div>
-
+                    @endforeach
             </div>
         </section><!-- End Our Services Section -->
 

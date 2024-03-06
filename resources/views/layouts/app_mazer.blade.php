@@ -18,7 +18,7 @@
             </div>
             <div class="page-content">
                 <section class="row">
-                    <div class="col-12 col-lg-3">
+                    <div class="col-12 col-lg-4">
                         <div class="card">
                             <div class="card-body py-4 px-4">
                                 <div class="d-flex align-items-center">
@@ -27,7 +27,7 @@
                                     </div>
                                     <div class="ms-3 name">
                                         <h5 class="font-bold">{{ Auth::user()->name }}</h5>
-                                        <h6 class="text-muted mb-0">@johnducky</h6>
+                                        <h6 class="text-muted mb-0">{{ Auth::user()->email }}</h6>
                                         <a href="{{ route('logout') }}">Logout</a>
                                     </div>
                                 </div>
