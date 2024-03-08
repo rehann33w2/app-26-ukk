@@ -1,5 +1,5 @@
 @extends('layouts.app_mazer')
-@section('konten')    
+@section('konten')
 <div class="page-heading">
 <div class="page-title">
 <div class="row">
@@ -82,11 +82,11 @@
                                         </div>
                                         <div class="col-12 mb-3">
                                                 <label for="formFile" class="form-label"><b>Kategori</b></label> <br>
-                                                @foreach ($kategori as $item)
                                                 <select name="id_kategori" id="" class="form-select">
+                                                @foreach ($kategori as $item)
                                                     <option value="{{ $item->id }}">{{ $item->nm_kategori }}</option>
-                                                </select>
                                                 @endforeach
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-12">

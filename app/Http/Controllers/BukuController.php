@@ -16,7 +16,7 @@ class BukuController extends Controller
     {
         $model = Model::paginate(10);
         $kategoris = Kategori::latest()->get();
-        return view('buku.index',[
+        return view('buku.index', [
             'routePrefix' => 'buku',
             'title' => 'Data Buku',
             'model' => $model,
@@ -85,8 +85,7 @@ class BukuController extends Controller
     {
         $buku = Model::findOrFail($id);
         $kategori = Kategori::all();
-        return view('buku.update', compact('buku', 'kategori'));
-
+        return view('buku.edit', compact('buku', 'kategori'));
     }
 
     /**
@@ -101,7 +100,7 @@ class BukuController extends Controller
             'tahun_terbit' => 'required',
             'deskripsi' => 'required',
             'gambar'     => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'kategori'  => 'required|array',  
+            'id_kategori'  => 'required',
             'stok'       => 'required',
         ]);
 
@@ -113,7 +112,7 @@ class BukuController extends Controller
             $gambar->storeAs('public/buku', $gambar->hashName());
 
             //delete old image
-            Storage::delete('public/buku/'.$buku->image);
+            Storage::delete('public/buku/' . $buku->image);
 
             //update post with new image
             $buku->update([
@@ -123,10 +122,9 @@ class BukuController extends Controller
                 'penerbit'  => $request->get('penerbit'),
                 'tahun_terbit' => $request->get('tahun_terbit'),
                 'deskripsi' => $request->get('deskripsi'),
+                'id_kategori' => $request->get('id_kategori'),
                 'stok'       => $request->get('stok'),
             ]);
-            $buku->kategori()->sync($request->input('kategori'));
-
         } else {
 
             //update post without image
@@ -136,9 +134,9 @@ class BukuController extends Controller
                 'penerbit'  => $request->get('penerbit'),
                 'tahun_terbit' => $request->get('tahun_terbit'),
                 'deskripsi' => $request->get('deskripsi'),
+                'id_kategori' => $request->get('id_kategori'),
                 'stok'       => $request->get('stok'),
             ]);
-            $buku->kategori()->sync($request->input('kategori'));
         }
         //redirect to index
         return redirect()->route('buku.index');
@@ -150,10 +148,7 @@ class BukuController extends Controller
     public function destroy(Model $buku)
     {
         //delete image
-        Storage::delete('public/buku/'. $buku->gambar);
-
-        $buku->kategori()->detach();
-
+        Storage::delete('public/buku/' . $buku->gambar);
         //delete buku
         $buku->delete();
 

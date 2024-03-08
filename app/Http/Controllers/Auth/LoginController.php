@@ -43,11 +43,11 @@ class LoginController extends Controller
     public function authenticated(Request $request, $user)
     {
         if ($user->akses == 'operator') {
-            return redirect()->route('operator.beranda');
+            return redirect()->route('admin.beranda');
         } elseif ($user->akses == 'admin') {
             return redirect()->route('admin.beranda');
         } elseif ($user->akses == 'peminjam') {
-            return redirect()->route('peminjam.beranda');
+            return redirect()->route('home');
         } else {
             Auth::logout();
             // ('Anda tidak memiliki hak akses')->error();

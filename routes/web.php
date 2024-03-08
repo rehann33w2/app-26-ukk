@@ -5,9 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BerandaAdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BukuController;
-use App\Http\Controllers\BerandaOperatorController;
-use App\Http\Controllers\BerandaPeminjamController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KategoriController;
 
 /*
@@ -23,23 +20,15 @@ use App\Http\Controllers\KategoriController;
 
 
 Auth::routes();
-
-Route::prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
-    Route::get('beranda', [BerandaAdminController::class, 'index'])->name('admin.beranda');
-    Route::resource('user', UserController::class);
-    Route::resource('kategori', KategoriController::class);
-    Route::resource('buku', BukuController::class);
-});
-
-Route::prefix('operator')->middleware(['auth', 'auth.operator'])->group(function () {
-    Route::get('beranda', [BerandaOperatorController::class, 'index'])->name('operator.beranda');
-    Route::resource('kategori', KategoriController::class);
-    Route::resource('buku', BukuController::class);
-});
-
-Route::prefix('peminjam')->middleware(['auth', 'auth.peminjam'])->group(function () {
-    Route::get('beranda', [BerandaPeminjamController::class, 'index'])->name('peminjam.beranda');
-    Route::resource('buku', BukuController::class);
+Route::middleware('auth')->group(function(){
+    Route::get('beranda', [BerandaAdminController::class, 'index'])->middleware('userAcces:admin,operator')->name('admin.beranda');
+    Route::middleware('userAcces:admin,operator')->group(function (){
+        Route::resource('kategori', KategoriController::class);
+        Route::resource('buku', BukuController::class);
+    });
+    Route::middleware('userAcces:admin')->group(function (){
+        Route::resource('user', UserController::class);
+    });
 });
 
 Route::get('logout', function () {

@@ -1,5 +1,5 @@
 @extends('layouts.app_mazer')
-@section('konten')    
+@section('konten')
 <div class="page-heading">
     <div class="page-title">
         <div class="row">
@@ -16,8 +16,8 @@
             </div>
         </div>
     </div>
-</div> 
-<div class="page-content"> 
+</div>
+<div class="page-content">
     <section class="row">
         <div class="col-12 col-lg-12">
             <div class="card">
@@ -48,12 +48,12 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($model as $item)    
+                                @foreach ($model as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->nm_kategori }}</td>
                                     <td>
-                                        
+
                                         <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('kategori.destroy', $item->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')

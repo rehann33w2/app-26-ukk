@@ -49,13 +49,13 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
-                @if (Auth::user()->akses == 'admin')
                 <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-grid-1x2-fill"></i>
                         <span>Perpustakaan</span>
                     </a>
                     <ul class="submenu ">
+                        @if (Auth::user()->akses == 'admin')
                         <li class="submenu-item  ">
                             <a href="{{ route('user.index') }}" class="submenu-link">User</a>
                         </li>
@@ -65,38 +65,17 @@
                         <li class="submenu-item  ">
                             <a href="{{ route('buku.index') }}" class="submenu-link">Buku</a>
                         </li>
-                    </ul>
-                </li>
-                @endif
-                @if (Auth::user()->akses == 'operator')
-                <li class="sidebar-item  has-sub">
-                    <a href="#" class='sidebar-link'>
-                        <i class="bi bi-grid-1x2-fill"></i>
-                        <span>Perpustakaan</span>
-                    </a>
-                    <ul class="submenu ">
+                        @endif
+                        @if (Auth::user()->akses == 'operator')
                         <li class="submenu-item  ">
                             <a href="{{ route('kategori.index') }}" class="submenu-link">Kategori</a>
                         </li>
                         <li class="submenu-item  ">
                             <a href="{{ route('buku.index') }}" class="submenu-link">Buku</a>
                         </li>
+                        @endif
                     </ul>
                 </li>
-                @endif
-                @if (Auth::user()->akses == 'peminjam')
-                <li class="sidebar-item  has-sub">
-                    <a href="#" class='sidebar-link'>
-                        <i class="bi bi-grid-1x2-fill"></i>
-                        <span>Perpustakaan</span>
-                    </a>
-                    <ul class="submenu ">
-                        <li class="submenu-item  ">
-                            <a href="{{ route('buku.index') }}" class="submenu-link">Buku</a>
-                        </li>
-                    </ul>
-                </li>
-                @endif
             </ul>
         </div>
     </div>
